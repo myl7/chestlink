@@ -52,12 +52,11 @@ ChestLink 是一个纯服务端 Fabric 模组，可以把多个原版箱子加�
 ## 构建和测试
 
 ```bash
-./gradlew test
 ./gradlew runGameTest
 ./gradlew build
 ```
 
-构建产物位于 `build/libs/`。JUnit 测试不需要运行世界的逻辑，Fabric GameTest 在测试服务器中验证共享库存、mixin 和连接生命周期。GitHub Actions 会运行两类测试并上传构建产物。
+构建产物位于 `build/libs/`。Fabric GameTest 会在测试服务器中验证共享库存、mixin 和连接生命周期。GitHub Actions 会运行 GameTest 并上传构建产物。
 
 ## 已知限制
 

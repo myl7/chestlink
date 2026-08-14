@@ -30,7 +30,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Test and build
-        run: ./gradlew test runGameTest build --stacktrace
+        run: ./gradlew runGameTest build --stacktrace
 
       - name: Upload built jar
         uses: actions/upload-artifact@v4
