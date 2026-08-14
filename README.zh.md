@@ -16,7 +16,7 @@ ChestLink 是一个纯服务端 Fabric 模组，可以通过命名频道连接�
 
 ## 指令
 
-看向五格内的箱子，然后执行：
+使用以下指令。执行 `link` 或 `unlink` 时，需要看向五格内的箱子。
 
 ```text
 /chestlink link <频道名>
