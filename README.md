@@ -52,12 +52,11 @@ ChestLink stores channel data in `<world>/data/chestlink/links.dat`. A linked ch
 ## Build and test
 
 ```bash
-./gradlew test
 ./gradlew runGameTest
 ./gradlew build
 ```
 
-The built JAR is written to `build/libs/`. JUnit covers logic that does not require a running world. Fabric GameTest covers shared inventories, mixins, and link lifecycle behavior on a test server. GitHub Actions runs both test suites and uploads the built JAR.
+The built JAR is written to `build/libs/`. Fabric GameTest covers shared inventories, mixins, and link lifecycle behavior on a test server. GitHub Actions runs the GameTest suite and uploads the built JAR.
 
 ## Known limits
 
