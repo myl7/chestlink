@@ -1,30 +1,37 @@
 {
-	"schemaVersion": 1,
-	"id": "chestlink",
-	"version": "${version}",
-	"name": "ChestLink",
-	"description": "Link vanilla chests into shared-inventory channels with /chestlink. Server-side only: vanilla clients can join and see everything, particles included.",
-	"authors": [
-		"myl7"
-	],
-	"contact": {
-		"sources": "https://github.com/myl7/chestlink"
-	},
-	"license": "MIT",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"io.github.myl7.chestlink.ChestLinkMod"
-		]
-	},
-	"mixins": [
-		"chestlink.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.19.3",
-		"minecraft": "~26.2",
-		"java": ">=25",
-		"fabric-command-api-v2": "*",
-		"fabric-lifecycle-events-v1": "*"
-	}
+  "schemaVersion": 1,
+  "id": "chestlink",
+  "version": "${version}",
+  "name": "ChestLink",
+  "description": "Links vanilla chests into shared-inventory channels. Server-side only and compatible with vanilla clients.",
+  "authors": [
+    {
+      "name": "Yulong Ming",
+      "contact": {
+        "email": "i@myl7.org"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://github.com/myl7/chestlink",
+    "sources": "https://github.com/myl7/chestlink",
+    "issues": "https://github.com/myl7/chestlink/issues"
+  },
+  "license": "Apache-2.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.myl7.chestlink.ChestLinkMod"
+    ]
+  },
+  "mixins": [
+    "chestlink.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-command-api-v2": "*",
+    "fabric-lifecycle-events-v1": "*"
+  }
 }
