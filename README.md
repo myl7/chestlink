@@ -1,35 +1,22 @@
 # ChestLink
 
-Server-side Fabric mod that links vanilla chests into named channels. Every chest in a channel uses the same 27-slot inventory, including access through its GUI, hoppers, droppers, and comparators.
+ChestLink is a server-side Fabric mod that links vanilla chests through named channels. Every chest in a channel uses the same 27-slot inventory. Chest screens, hoppers, droppers, and comparators all use the shared items.
 
 This document is also available in [中文](README.zh.md).
 
-## Features
+## Minecraft version
 
-- Shared inventory. All members of a channel read and write the same item list rather than copying items between separate inventories.
-- Cross-dimension links. A channel can contain chests from different dimensions, and an unloaded member does not prevent the other members from working.
-- Vanilla-client compatible. The mod adds no blocks, items, block entities, or client-side assets. A vanilla client can join a dedicated server that runs ChestLink.
-- Persistent channels. Channel contents and member positions are stored with the world.
-- Vanilla automation support. Hoppers, droppers, container menus, and comparator output use the shared inventory.
-
-## Versions
-
-| Component | Version |
-| --- | --- |
-| Minecraft | 26.2 |
-| Fabric Loader | 0.19.3 or newer |
-| Fabric API | 0.156.0+26.2 |
-| Fabric Loom | 1.17.17 |
-| Gradle | 9.5.1 |
-| Java | 25 or newer |
+- 26.2
 
 ## Installation
 
-Install Fabric Loader, Fabric API, and the ChestLink JAR in the server's `mods` directory. Clients do not need ChestLink or Fabric API. For single-player use, install them in the local game instance because the integrated server runs inside the client.
+Install Fabric Loader on the server, then put Fabric API and the ChestLink JAR in the server's `mods` directory. Clients do not need ChestLink or Fabric API.
+
+For single-player use, install the same files in the local game instance.
 
 ## Commands
 
-Commands require permission level 2. Look at a chest within five blocks when running `link` or `unlink`.
+Look at a chest within five blocks, then use:
 
 ```text
 /chestlink link <channel>
@@ -37,34 +24,39 @@ Commands require permission level 2. Look at a chest within five blocks when run
 /chestlink list
 ```
 
-`link` creates the channel when it does not exist and uses the chest's current contents as the initial shared inventory. Joining an existing channel requires an empty chest.
+These commands require permission level 2.
 
-`unlink` removes the targeted chest. When other members remain, the items stay in the channel and the removed chest becomes empty. Removing the last member moves the channel inventory back into that chest and deletes the channel.
+`link` creates the channel if needed. The first chest supplies the channel's starting items. A chest joining an existing channel must be empty.
 
-`list` shows every channel and the dimension and coordinates of each member.
+`unlink` removes the chest from its channel. If other linked chests remain, the items stay in the channel and the removed chest becomes empty. If you unlink the last chest, the shared items move into that chest and the channel is deleted.
 
-Only single chests without an unopened loot table can be linked. A trapped chest is supported. Breaking a linked chest applies the same rules as `unlink`: a non-last member drops no channel items, while the last member drops the channel inventory.
+`list` shows each channel and the dimension and coordinates of its chests.
 
-## Storage
+You can link single chests and trapped chests. A chest with an unopened loot table cannot join a channel. Breaking a linked chest follows the same item rules as `unlink`.
 
-ChestLink stores channel data in `<world>/data/chestlink/links.dat`. A linked chest's private inventory is cleared, while its normal inventory methods are redirected to the channel. Removing the mod leaves the channel data file unused by vanilla, so unlink every chest before uninstalling if the items must remain accessible.
+Channels can link chests across dimensions. You can use a channel through any chest whose chunk is loaded, even when its other chests are in unloaded chunks.
+
+## Uninstalling
+
+Unlink every chest before removing ChestLink if you want to keep the channel items. Minecraft does not show those items after the mod is removed.
+
+## Limitations
+
+- A channel has 27 slots regardless of how many chests join it.
+- ChestLink supports single chests only. Do not place another chest beside a linked chest because Minecraft may combine them into an unsupported double chest.
+- Opening a linked chest animates that chest only. The other chests in the channel keep their lids closed.
+- A mod that removes a chest without breaking it may leave that chest in the channel list.
 
 ## Build and test
+
+Install JDK 25, then run:
 
 ```bash
 ./gradlew runGameTest
 ./gradlew build
 ```
 
-The built JAR is written to `build/libs/`. Fabric GameTest covers shared inventories, mixins, and link lifecycle behavior on a test server. GitHub Actions runs the GameTest suite and uploads the built JAR.
-
-## Known limits
-
-- Each channel has 27 slots, regardless of how many chests it contains.
-- Double chests cannot be linked. Placing another chest next to an already linked chest can still make vanilla form a double chest and produce an unsupported 54-slot interface.
-- Lid animation and open-count state remain local to each chest.
-- `/data` writes to a linked chest edit its private storage, which is not the active channel inventory.
-- A third-party mod that removes a chest without the normal block-removal path may bypass automatic unlinking.
+The built JAR is written to `build/libs/`.
 
 ## License
 
