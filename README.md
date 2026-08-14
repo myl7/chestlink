@@ -16,7 +16,7 @@ For single-player use, install the same files in the local game instance.
 
 ## Commands
 
-Look at a chest within five blocks, then use:
+Use the following commands. When you run `link` or `unlink`, look at a chest within five blocks.
 
 ```text
 /chestlink link <channel>
