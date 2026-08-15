@@ -29,8 +29,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Test and build
-        run: ./gradlew runGameTest build --stacktrace
+      # `build` runs `runGameTest` as part of the check task, so this covers both.
+      - name: Build and test
+        run: ./gradlew build --stacktrace
 
       - name: Upload built jar
         uses: actions/upload-artifact@v5
