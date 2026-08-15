@@ -10,6 +10,8 @@ ChestLink 是一个纯服务端 Fabric 模组，可以通过命名频道连接�
 
 ## 安装
 
+从 [releases 页面](https://github.com/myl7/chestlink/releases)下载 JAR。
+
 在服务器安装 Fabric Loader，再把 Fabric API 和 ChestLink JAR 放入服务器的 `mods` 目录。客户端无需安装 ChestLink 或 Fabric API。
 
 单人游戏需要把这些文件安装到本地游戏实例。
