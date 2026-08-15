@@ -184,7 +184,7 @@ public final class LinkManager {
 			}
 
 			ServerLevel memberLevel = server.getLevel(member.dimension());
-			if (memberLevel != null && memberLevel.hasChunkAt(member.pos())) {
+			if (memberLevel != null && memberLevel.isLoaded(member.pos())) {
 				BlockState memberState = memberLevel.getBlockState(member.pos());
 				memberLevel.updateNeighbourForOutputSignal(member.pos(), memberState.getBlock());
 			}
@@ -201,7 +201,7 @@ public final class LinkManager {
 		for (LinkState.Channel channel : state.channels().values()) {
 			for (GlobalPos member : channel.members) {
 				ServerLevel level = tickingServer.getLevel(member.dimension());
-				if (level == null || !level.hasChunkAt(member.pos())) {
+				if (level == null || !level.isLoaded(member.pos())) {
 					continue;
 				}
 
